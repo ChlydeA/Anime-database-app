@@ -1,20 +1,50 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Anime Database</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <!-- Search Bar -->
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onSearch()"></ion-searchbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <!-- Trending Anime Section -->
+  <div class="trending-container">
+    <h2>Trending</h2>
+    <div class="trending-list">
+      <div
+        class="trending-item"
+        *ngFor="let anime of trendingAnime; let i = index"
+        (click)="viewDetails(anime.mal_id)"
+      >
+        <img [src]="anime.images.jpg.image_url" alt="{{ anime.title }}" />
+        <h3>{{ anime.title }}</h3>
+        <span class="number">{{ i + 1 | number: '2.0' }}</span>
+      </div>
+      <!-- View All Button -->
+      <div class="view-all-btn" (click)="viewAll('trending')">
+        View All
+      </div>
+    </div>
+  </div>
+
+  <!-- This Season Anime Section -->
+  <div class="season-container">
+    <h2>This Season</h2>
+    <div class="season-list">
+      <div
+        class="season-item"
+        *ngFor="let anime of seasonAnime; let i = index"
+        (click)="viewDetails(anime.mal_id)"
+      >
+        <img [src]="anime.images.jpg.image_url" alt="{{ anime.title }}" />
+        <h3>{{ anime.title }}</h3>
+        <span class="number">{{ i + 1 | number: '2.0' }}</span>
+      </div>
+      <!-- View All Button -->
+      <div class="view-all-btn" (click)="viewAll('season')">
+        View All
+      </div>
+    </div>
   </div>
 </ion-content>

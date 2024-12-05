@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ anime?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="anime">
+  <ion-card>
+    <ion-img [src]="anime.images.jpg.image_url"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ anime.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Synopsis:</strong> {{ anime.synopsis }}</p>
+      <p><strong>Score:</strong> {{ anime.score }}</p>
+      <p><strong>Episodes:</strong> {{ anime.episodes }}</p>
+      <p><strong>Status:</strong> {{ anime.status }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
